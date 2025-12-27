@@ -1,9 +1,4 @@
-Perfect 👍
-Here is a **professional, complete, and production-ready `README.md`** that covers **both frontend + backend** and clearly explains the **smart-contract–based payment system**.
 
-You can copy-paste this directly into your repo.
-
----
 
 # 🌱 TraceBloom
 
