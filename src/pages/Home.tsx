@@ -16,7 +16,6 @@ const Home = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* ================= HERO ================= */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-emerald-600 text-primary-foreground">
         <div className="container mx-auto px-6 py-24 md:py-36">
           <div className="max-w-3xl relative z-10">
@@ -52,13 +51,11 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Decorative Glow */}
         <div className="absolute -bottom-32 -right-32 opacity-20">
           <Sprout className="h-[32rem] w-[32rem]" />
         </div>
       </section>
 
-      {/* ================= STATS ================= */}
       <section className="py-16 bg-muted/40">
         <div className="container mx-auto px-6">
           <div className="grid gap-8 md:grid-cols-3 text-center">
@@ -84,7 +81,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= FEATURES ================= */}
       <section className="py-24">
         <div className="container mx-auto px-6">
           <h2 className="mb-14 text-center text-4xl font-bold">
@@ -92,7 +88,7 @@ const Home = () => {
           </h2>
 
           <div className="grid gap-10 md:grid-cols-3">
-            {/* FARMERS */}
+
             <div className="group rounded-xl border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="mb-5 inline-flex rounded-xl bg-primary/10 p-4">
                 <Sprout className="h-9 w-9 text-primary" />
@@ -106,7 +102,6 @@ const Home = () => {
               </p>
             </div>
 
-            {/* DISTRIBUTORS */}
             <div className="group rounded-xl border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="mb-5 inline-flex rounded-xl bg-primary/10 p-4">
                 <TrendingUp className="h-9 w-9 text-primary" />
@@ -120,7 +115,6 @@ const Home = () => {
               </p>
             </div>
 
-            {/* CONSUMERS */}
             <div className="group rounded-xl border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="mb-5 inline-flex rounded-xl bg-primary/10 p-4">
                 <Shield className="h-9 w-9 text-primary" />
@@ -137,7 +131,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= WHY TRACEBLOOM ================= */}
       <section className="py-24 bg-gradient-to-b from-muted/30 to-background">
         <div className="container mx-auto px-6">
           <h2 className="mb-14 text-center text-4xl font-bold">
@@ -184,7 +177,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= CTA ================= */}
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-6 text-center">
           <Users className="mx-auto mb-6 h-16 w-16 opacity-90" />

@@ -34,9 +34,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [loadingWallet, setLoadingWallet] = useState(false);
 
-  // ================================
-  // 🔄 Restore session on refresh
-  // ================================
   useEffect(() => {
     const storedUser = localStorage.getItem('auth-user');
     if (storedUser) {
@@ -44,9 +41,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // ================================
-  // ✉️ Signup (Email + Password)
-  // ================================
   const signup = async (email: string, password: string, role: UserRole) => {
     try {
       const res = await fetch(`${BACKEND_URL}/api/auth/signup`, {
@@ -76,9 +70,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  // ================================
-  // 🦊 Wallet Connect + Login
-  // ================================
   const connectWallet = async (email: string, role: UserRole) => {
     try {
       if (!(window as any).ethereum) {
@@ -92,7 +83,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const signer = await provider.getSigner();
       const walletAddress = (await signer.getAddress()).toLowerCase();
 
-      // 1️⃣ Get nonce
+      // Get nonce
       const nonceRes = await fetch(`${BACKEND_URL}/api/auth/wallet/nonce`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -102,11 +93,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const nonceData = await nonceRes.json();
       if (!nonceRes.ok) throw new Error(nonceData.error || 'Nonce fetch failed');
 
-      // 2️⃣ Sign message
+      // Sign message
       const message = `Sign this message to login to TraceBloom. Nonce: ${nonceData.nonce}`;
       const signature = await signer.signMessage(message);
 
-      // 3️⃣ Verify signature
+      // Verify signature
       const verifyRes = await fetch(`${BACKEND_URL}/api/auth/wallet/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -135,9 +126,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  // ================================
-  // 🚪 Logout
-  // ================================
   const logout = () => {
     setUser(null);
     localStorage.removeItem('token');

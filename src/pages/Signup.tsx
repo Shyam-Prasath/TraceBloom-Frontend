@@ -33,8 +33,6 @@ const Signup = () => {
 
     try {
       await signup(email, password, role);
-
-      // Save email for distributor dashboard if needed
       localStorage.setItem('user-email', email);
 
       toast.success('Signup successful!');
@@ -47,7 +45,6 @@ const Signup = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
       <div className="flex items-center justify-center px-4 py-16">
         <Card className="w-full max-w-md">
           <CardHeader>
@@ -59,7 +56,6 @@ const Signup = () => {
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Email */}
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -71,8 +67,6 @@ const Signup = () => {
                   required
                 />
               </div>
-
-              {/* Password */}
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
@@ -84,8 +78,6 @@ const Signup = () => {
                   required
                 />
               </div>
-
-              {/* Role */}
               <div className="space-y-2">
                 <Label htmlFor="role">Select Role</Label>
                 <select
@@ -101,13 +93,9 @@ const Signup = () => {
                   <option value="consumer">Consumer</option>
                 </select>
               </div>
-
-              {/* Signup Button */}
               <Button type="submit" className="w-full">
                 Sign Up
               </Button>
-
-              {/* Login Link */}
               <p className="text-center text-sm text-muted-foreground">
                 Already have an account?{' '}
                 <Link

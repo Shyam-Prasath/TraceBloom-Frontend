@@ -44,7 +44,6 @@ const FarmerDashboard = () => {
   const [showQR, setShowQR] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Form states
   const [cropType, setCropType] = useState('');
   const [quantity, setQuantity] = useState('');
   const [harvestDate, setHarvestDate] = useState('');
@@ -54,9 +53,7 @@ const FarmerDashboard = () => {
   const [farmerPhone, setFarmerPhone] = useState('');
   const [image, setImage] = useState<File | null>(null);
 
-  // ==============================
-  // 📦 Fetch Batches
-  // ==============================
+
   const fetchBatches = async () => {
     if (!user?.walletAddress) return;
     try {
@@ -70,9 +67,6 @@ const FarmerDashboard = () => {
     }
   };
 
-  // ==============================
-  // 💰 Fetch Payments
-  // ==============================
   const fetchPayments = async () => {
     if (!user?.walletAddress) return;
     try {
@@ -93,9 +87,7 @@ const FarmerDashboard = () => {
     }
   }, [user?.walletAddress]);
 
-  // ==============================
-  // 🌾 Register New Batch
-  // ==============================
+
   const handleRegisterBatch = async () => {
     if (!cropType || !quantity || !harvestDate || !location || !farmerName || !farmerPhone) {
       toast.error('Please fill all required fields');
@@ -149,9 +141,7 @@ const FarmerDashboard = () => {
     }
   };
 
-  // ==============================
-  // 📱 Generate QR Code
-  // ==============================
+
   const handleGenerateQR = () => {
     if (!selectedBatch) {
       toast.error('Please select a batch');
@@ -160,9 +150,6 @@ const FarmerDashboard = () => {
     setShowQR(true);
   };
 
-  // ==============================
-  // 💰 Payment Calculations
-  // ==============================
   const farmerPayments = payments.filter((p) => batches.some((b) => b.batchId === p.batchId));
   const totalEarnings = farmerPayments.filter((p) => p.status === 'Paid').reduce((sum, p) => sum + p.amount, 0);
   const pendingPayments = farmerPayments.filter((p) => p.status === 'Pending').reduce((sum, p) => sum + p.amount, 0);
@@ -174,9 +161,7 @@ const FarmerDashboard = () => {
     })
     .reduce((sum, p) => sum + p.amount, 0);
 
-  // ==============================
-  // 🎨 UI
-  // ==============================
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -203,7 +188,6 @@ const FarmerDashboard = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* 🌱 Crop Registration */}
           <TabsContent value="registration">
             <Card>
               <CardHeader>
@@ -252,7 +236,6 @@ const FarmerDashboard = () => {
             </Card>
           </TabsContent>
 
-          {/* 📱 QR Generation */}
           <TabsContent value="qrcode">
             <Card>
               <CardHeader>
@@ -284,7 +267,6 @@ const FarmerDashboard = () => {
             </Card>
           </TabsContent>
 
-          {/* 💰 Payments */}
           <TabsContent value="payments">
             <Card>
               <CardHeader>
@@ -352,7 +334,6 @@ const FarmerDashboard = () => {
             </Card>
           </TabsContent>
 
-          {/* 📜 Batch History */}
           <TabsContent value="history">
             <Card>
               <CardHeader>

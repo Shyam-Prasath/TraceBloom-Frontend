@@ -24,9 +24,6 @@ import { toast } from 'sonner';
 
 const BACKEND_URL = import.meta.env.VITE_API_BASE || 'https://tracebloom-backend-2.onrender.com';
 
-/* =========================
-   Types
-========================= */
 interface Batch {
   batchId: string;
   cropType?: string;
@@ -61,9 +58,6 @@ interface Shipment {
   };
 }
 
-/* =========================
-   Component
-========================= */
 const DistributorDashboard = () => {
   const [distributorName, setDistributorName] = useState(
     localStorage.getItem('user-name') || ''
@@ -80,16 +74,10 @@ const DistributorDashboard = () => {
   const [shipments, setShipments] = useState<Shipment[]>([]);
   const [loadingShipments, setLoadingShipments] = useState(true);
 
-  /* =========================
-     Analytics state
-  ========================= */
   const [metric, setMetric] = useState<'orders' | 'revenue'>('orders');
   const [year, setYear] = useState(new Date().getFullYear());
   const chartRef = useRef<HTMLDivElement>(null);
 
-  /* =========================
-     Ensure distributor info
-  ========================= */
   const ensureDistributorInfo = async () => {
     let name = distributorName;
     let email = distributorEmail;
@@ -112,9 +100,6 @@ const DistributorDashboard = () => {
     return { name, email };
   };
 
-  /* =========================
-     Fetch incoming batches
-  ========================= */
   const fetchBatches = async () => {
     if (!distributorEmail) return;
 
@@ -144,9 +129,6 @@ const DistributorDashboard = () => {
     }
   };
 
-  /* =========================
-     Fetch transactions
-  ========================= */
   const fetchTransactions = async () => {
     if (!distributorEmail) return;
 
@@ -170,9 +152,6 @@ const DistributorDashboard = () => {
     }
   };
 
-  /* =========================
-     Accept batch
-  ========================= */
   const handleAccept = async (batchId: string) => {
     const info = await ensureDistributorInfo();
     if (!info) return;
@@ -197,9 +176,6 @@ const DistributorDashboard = () => {
     }
   };
 
-  /* =========================
-     Reject batch
-  ========================= */
   const handleReject = async (batchId: string) => {
     const info = await ensureDistributorInfo();
     if (!info) return;
@@ -223,9 +199,6 @@ const DistributorDashboard = () => {
     }
   };
 
-  /* =========================
-     Load data
-  ========================= */
   useEffect(() => {
     if (distributorEmail) {
       fetchBatches();
@@ -233,9 +206,6 @@ const DistributorDashboard = () => {
     }
   }, [distributorEmail]);
 
-  /* =========================
-     📊 Analytics: Month vs Orders
-  ========================= */
   const monthlyOrders = useMemo(() => {
     const map: Record<string, number> = {};
 
@@ -254,9 +224,6 @@ const DistributorDashboard = () => {
     }));
   }, [transactions]);
 
-  /* =========================
-     Available years
-  ========================= */
   const availableYears = useMemo(() => {
   const years = new Set<number>();
 
@@ -271,17 +238,7 @@ const DistributorDashboard = () => {
   return Array.from(years).sort();
 }, [transactions, shipments]);
 
-
-  /* =========================
-     Monthly analytics
-  ========================= */
-  
-
-  /* =========================
-     KPIs
-  ========================= */
   const totalOrders = transactions.length;
-
 
 const totalRevenue = shipments.reduce(
   (sum, s) => sum + s.batch.quantity * 10,
@@ -291,10 +248,6 @@ const totalRevenue = shipments.reduce(
 const avgOrder =
   totalOrders === 0 ? 0 : Math.round(totalRevenue / totalOrders);
 
-
-    /* =========================
-     Export chart
-  ========================= */
   const exportChart = async () => {
     if (!chartRef.current) return;
 
@@ -305,9 +258,6 @@ const avgOrder =
     link.click();
   };
   
-  /* =========================
-     UI
-  ========================= */
 
   const fetchShipments = async () => {
   if (!distributorEmail) return;
@@ -368,7 +318,6 @@ const monthlyConsumerRevenue = useMemo(() => {
     const d = new Date(s.createdAt);
     if (d.getFullYear() !== year) return;
 
-    // you can replace this with real order value later
     const estimatedRevenue = s.batch.quantity * 10;
 
     map[d.getMonth()] += estimatedRevenue;
@@ -415,7 +364,6 @@ const analyticsData =
             </TabsTrigger>
           </TabsList>
 
-          {/* ================= Batches ================= */}
           <TabsContent value="batches">
             <Card>
               <CardHeader>
@@ -458,7 +406,6 @@ const analyticsData =
             </Card>
           </TabsContent>
 
-          {/* ================= Shipments ================= */}
           <TabsContent value="shipments">
   <Card>
     <CardHeader>
@@ -525,8 +472,6 @@ const analyticsData =
   </Card>
 </TabsContent>
 
-
-          {/* ================= Transactions ================= */}
           <TabsContent value="transactions">
             <Card>
               <CardHeader>
@@ -566,7 +511,6 @@ const analyticsData =
             </Card>
           </TabsContent>
 
-          {/* ================= Analytics ================= */}
           <TabsContent value="analytics">
             <Card className="bg-gradient-to-br from-indigo-50 via-white to-indigo-100 border-none shadow-xl">
               <CardHeader>
@@ -598,7 +542,6 @@ const analyticsData =
               </CardHeader>
 
               <CardContent>
-                {/* KPI CARDS */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                   {[
                     { label: 'Total Orders', value: totalOrders },
@@ -617,7 +560,6 @@ const analyticsData =
                   ))}
                 </div>
 
-                {/* TOGGLE */}
                 <div className="flex justify-center gap-2 mb-4">
                   {['orders', 'revenue'].map((m) => (
                     <Button
@@ -631,7 +573,6 @@ const analyticsData =
                   ))}
                 </div>
 
-                {/* CHART */}
                 <div
                   ref={chartRef}
                   className="h-[520px] rounded-2xl bg-white p-6 shadow-lg"
@@ -675,7 +616,6 @@ const analyticsData =
             </Card>
           </TabsContent>
 
-          {/* ================= PLACEHOLDERS ================= */}
           <TabsContent value="batches">
             <p className="text-muted-foreground hidden">Batches tab unchanged.</p>
           </TabsContent>

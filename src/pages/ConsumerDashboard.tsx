@@ -76,7 +76,6 @@ const openManualUrl = () => {
   const consumerId = consumer?.id;
   const consumerEmail = consumer?.email;
 
-  /* =================== FETCH CONSUMER =================== */
   useEffect(() => {
     const email = localStorage.getItem('user-email');
     if (!email) return;
@@ -87,7 +86,6 @@ const openManualUrl = () => {
       .catch(console.error);
   }, []);
 
-  /* =================== FETCH BATCHES =================== */
   useEffect(() => {
     if (!consumerId) return;
 
@@ -110,7 +108,6 @@ const openManualUrl = () => {
       .catch(console.error);
   }, [consumerId]);
 
-  /* =================== FETCH REVIEWS =================== */
   useEffect(() => {
     if (!selectedBatch) return;
 
@@ -120,7 +117,6 @@ const openManualUrl = () => {
       .catch(console.error);
   }, [selectedBatch]);
 
-  /* =================== ACCEPT BATCH =================== */
   const handleAccept = async () => {
     if (!selectedBatch || !consumer) return;
 
@@ -145,7 +141,6 @@ const openManualUrl = () => {
     }
   };
 
-  /* =================== REJECT BATCH =================== */
   const handleReject = async () => {
     if (!selectedBatch || !consumer) return;
 
@@ -164,7 +159,6 @@ const openManualUrl = () => {
     }
   };
 
-  /* =================== SUBMIT REVIEW =================== */
   const handleSubmitReview = async () => {
     if (!selectedBatch || rating === 0) {
       alert('Select batch and rating');
@@ -213,7 +207,7 @@ const openManualUrl = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* ================= QR SCANNER ================= */}
+          
 <TabsContent value="scanner">
   <div className="max-w-3xl mx-auto px-6 py-12">
     <Card className="border-2 border-dashed border-green-300 shadow-xl">
@@ -228,7 +222,7 @@ const openManualUrl = () => {
       </CardHeader>
 
       <CardContent className="space-y-10">
-        {/* SCAN BUTTON */}
+        
         {!scannerVisible && (
           <div className="flex justify-center">
             <Button
@@ -242,7 +236,7 @@ const openManualUrl = () => {
           </div>
         )}
 
-        {/* QR CAMERA */}
+        
         {scannerVisible && (
           <div
             id="qr-reader"
@@ -251,14 +245,14 @@ const openManualUrl = () => {
           />
         )}
 
-        {/* OR DIVIDER */}
+        
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-gray-300" />
           <span className="text-gray-500 font-medium">OR</span>
           <div className="flex-1 h-px bg-gray-300" />
         </div>
 
-        {/* MANUAL URL */}
+        
         <div className="space-y-4">
           <Label className="text-base">
             Enter traceability URL manually
@@ -284,7 +278,7 @@ const openManualUrl = () => {
 </TabsContent>
 
 
-          {/* ================= PRODUCT DETAILS ================= */}
+          
 <TabsContent value="details" className="space-y-12">
 
   {/* ===== AVAILABLE PRODUCTS ===== */}
@@ -409,7 +403,7 @@ const openManualUrl = () => {
 </TabsContent>
 
 
-          {/* ================= PAYMENTS ================= */}
+          
 <TabsContent value="payments" className="space-y-8">
 
   <div className="flex items-center justify-between">
@@ -426,7 +420,7 @@ const openManualUrl = () => {
   ) : (
     <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-lg bg-white">
 
-      {/* TABLE HEADER */}
+      
       <div className="grid grid-cols-5 gap-4 px-6 py-4 bg-gray-50 text-sm font-semibold text-gray-600">
         <div>Batch</div>
         <div>Distributor</div>
@@ -435,7 +429,7 @@ const openManualUrl = () => {
         <div className="text-right">Action</div>
       </div>
 
-      {/* TABLE ROWS */}
+      
       <div className="divide-y">
         {payments.map((p) => {
           const statusColor =
@@ -451,17 +445,16 @@ const openManualUrl = () => {
               className="grid grid-cols-5 gap-4 px-6 py-5 items-center
                          hover:bg-gray-50 transition-colors"
             >
-              {/* Batch */}
+              
               <div className="font-medium text-gray-800">
                 {p.batch?.name || "Unknown Batch"}
               </div>
 
-              {/* Distributor */}
               <div className="text-gray-600 truncate">
                 {p.distributor?.email || "N/A"}
               </div>
 
-              {/* Status */}
+
               <div>
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColor}`}
@@ -470,12 +463,10 @@ const openManualUrl = () => {
                 </span>
               </div>
 
-              {/* Amount */}
               <div className="font-semibold text-gray-900">
                 ${p.amount}
               </div>
 
-              {/* Action */}
               <div className="text-right">
                 <Button
                   variant="outline"
@@ -493,8 +484,6 @@ const openManualUrl = () => {
   )}
 </TabsContent>
 
-
-          {/* ================= REVIEW ================= */}
 <TabsContent value="review" className="space-y-10">
 
   <div className="flex items-center justify-between">
@@ -511,7 +500,7 @@ const openManualUrl = () => {
   ) : (
     <div className="grid lg:grid-cols-2 gap-12">
 
-      {/* ================= LEFT: BATCH SELECTION ================= */}
+      
       <div className="space-y-6">
         <h3 className="text-lg font-semibold text-gray-700">
           Select a product
@@ -558,7 +547,6 @@ const openManualUrl = () => {
         </div>
       </div>
 
-      {/* ================= RIGHT: REVIEW FORM ================= */}
       <div className="bg-white border rounded-2xl shadow-xl p-8 space-y-6">
 
         {!selectedBatch ? (
@@ -576,7 +564,6 @@ const openManualUrl = () => {
               </p>
             </div>
 
-            {/* STAR RATING */}
             <div>
               <Label className="mb-2 block text-sm font-medium">
                 Rating
@@ -598,7 +585,6 @@ const openManualUrl = () => {
               </div>
             </div>
 
-            {/* TITLE */}
             <div>
               <Label className="mb-2 block text-sm font-medium">
                 Review title
@@ -610,7 +596,6 @@ const openManualUrl = () => {
               />
             </div>
 
-            {/* COMMENT */}
             <div>
               <Label className="mb-2 block text-sm font-medium">
                 Your feedback
@@ -635,7 +620,6 @@ const openManualUrl = () => {
     </div>
   )}
 
-  {/* ================= PREVIOUS REVIEWS ================= */}
   {reviews.length > 0 && (
     <div className="pt-10 space-y-6">
       <h3 className="text-xl font-semibold text-gray-800">

@@ -41,7 +41,6 @@ const Login = () => {
     try {
       await signup(email, password, role);
 
-      // 🔑 Required for distributor dashboard batch fetch
       localStorage.setItem('user-email', email);
 
       toast.success('Login successful!');
@@ -65,7 +64,6 @@ const Login = () => {
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Email */}
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -78,7 +76,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Password */}
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
@@ -91,7 +88,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Role */}
               <div className="space-y-2">
                 <Label htmlFor="role">Select Role</Label>
                 <select
@@ -108,19 +104,16 @@ const Login = () => {
                 </select>
               </div>
 
-              {/* Wallet Auth */}
               <WalletAuth
                 role={role}
                 email={email}
                 disabled={!email}
               />
 
-              {/* Login Button */}
               <Button type="submit" className="w-full">
                 Login
               </Button>
 
-              {/* Signup */}
               <p className="text-center text-sm text-muted-foreground">
                 Don&apos;t have an account?{' '}
                 <Link
