@@ -235,3 +235,20 @@ npm run dev
 * Mobile app integration
 * Analytics & insights dashboard
 
+## 🔗 Live Output Screenshots
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM](https://github.com/user-attachments/assets/995d77db-8888-4a7f-984a-b60292535440)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM (1)](https://github.com/user-attachments/assets/152858a3-c3d8-44f1-82ff-11155c7f6ac6)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM (3)](https://github.com/user-attachments/assets/88115901-0749-4052-9b9d-29f1e6e1834e)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM](https://github.com/user-attachments/assets/ea76fd4a-514c-465c-9ac8-6fe8617f8690)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM (3)](https://github.com/user-attachments/assets/299d3d02-8131-42fa-aa9d-3478008b4ffe)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM (5)](https://github.com/user-attachments/assets/40d908c3-0242-4b61-8868-a72f47e210c0)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM (5)](https://github.com/user-attachments/assets/47d4285c-bbb4-43fd-8a2e-c220e7db566b)
+
+![WhatsApp Image 2025-12-27 at 11 57 30 AM (6)](https://github.com/user-attachments/assets/5b196d9b-6e7b-44f5-856d-e59ef5ba6414)
